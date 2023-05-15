@@ -58,12 +58,15 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding: 2rem;
 }
 .card-img {
   width: 100%;
   max-width: 300px;
-  padding: 2rem;
+  
 }
 
 .card-name {
+  padding: 1rem;
+  font-size: 1.5rem;
 }
