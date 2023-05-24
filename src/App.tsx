@@ -6,6 +6,7 @@ import cardData from "./cardsData";
 function App() {
   const [cards, setCards] = React.useState(cardData);
   const [streak, setStreak] = React.useState(0);
+  const [record, setRecord] = React.useState(0);
 
   const getRandomCards = () => {
     // Shuffle the cards array randomly and select the first 9 cards.
@@ -28,13 +29,9 @@ function App() {
   }, []);
 
   const cardClick = (id) => {
-
-
     setCards((prevCards) =>
       prevCards.map((card) => {
         if (card.id === id && card.inMemory === false) {
-          console.log("change");
-
           return { ...card, inMemory: true };
         } else if (card.id === id && card.inMemory === true) {
           console.log("game over");
@@ -54,7 +51,16 @@ function App() {
     setCards((prevCards) =>
       prevCards.map((card) => ({ ...card, inMemory: false }))
     );
+    updateRecord();
     setStreak(0);
+  }
+
+  function updateRecord() {
+    if (streak <= record) {
+      return;
+    } else {
+      return setRecord((prevRecord) => (prevRecord = streak));
+    }
   }
 
   const cardsElements = shuffledCards.map((card) => (
@@ -72,7 +78,7 @@ function App() {
       <div className="txt-container">
         <h1>Memory game</h1>
         <h2>
-          Streak: {streak} <br /> Record: 5
+          Streak: {streak} <br /> Record: {record}
         </h2>
       </div>
       <div className="cards-container">{cardsElements}</div>
