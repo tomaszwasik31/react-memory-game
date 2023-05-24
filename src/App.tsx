@@ -21,19 +21,25 @@ function App() {
       return getRandomCards();
     }
   };
-  const [shuffledCards, setShuffledCards] = React.useState(getRandomCards());
+  const [shuffledCards, setShuffledCards] = React.useState([{}]);
+
+  React.useEffect(() => {
+    setShuffledCards(getRandomCards());
+  }, []);
 
   const cardClick = (id) => {
-    console.log(cards);
+
 
     setCards((prevCards) =>
       prevCards.map((card) => {
         if (card.id === id && card.inMemory === false) {
           console.log("change");
+
           return { ...card, inMemory: true };
         } else if (card.id === id && card.inMemory === true) {
           console.log("game over");
-          return resetGame();
+          resetGame();
+          return card;
         } else {
           return card;
         }
