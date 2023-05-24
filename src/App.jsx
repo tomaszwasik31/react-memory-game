@@ -59,7 +59,7 @@ function App() {
     if (streak <= record) {
       return;
     } else {
-      return setRecord((prevRecord) => (prevRecord = streak));
+      return setRecord(streak);
     }
   }
 
